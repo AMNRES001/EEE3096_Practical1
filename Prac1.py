@@ -17,7 +17,7 @@ import RPi.GPIO as GPIO
 import time
 GPIO.setmode(GPIO.BOARD)
 
-
+# initialize specific GPIO ports to input and output
 GPIO.setup(7, GPIO.OUT, initial = GPIO.LOW)
 GPIO.setup(11, GPIO.OUT, initial = GPIO.LOW)
 GPIO.setup(13, GPIO.OUT, initial = GPIO.LOW)
@@ -25,11 +25,13 @@ GPIO.setup(13, GPIO.OUT, initial = GPIO.LOW)
 GPIO.setup(35, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(37, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
+# initializing global variables in the function and setting intial values
 pinNum = 0
 count = 0
 index = 0
 x = 0
 
+#defining the counter function to increment and decrement
 def pushbuttons():
 	global count
 	if (GPIO.input(35) == 1 and count != 7):
@@ -46,6 +48,7 @@ def pushbuttons():
                 time.sleep(1)
 		#return
 
+#turn LEDs off
 def lightOff(pinNum):
         if (pinNum == 0):
                 GPIO.output(7, GPIO.LOW)
@@ -55,6 +58,7 @@ def lightOff(pinNum):
                 GPIO.output(13, GPIO.LOW)
         #return
 
+#turn LEDs on
 def lightON(pinNum):
         if (pinNum == 0):
                 GPIO.output(7, GPIO.HIGH)
